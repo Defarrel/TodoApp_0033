@@ -10,6 +10,10 @@ class TodoList extends StatefulWidget {
 class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: const Text('Form Page')),
+      ),
+    );
   }
 }

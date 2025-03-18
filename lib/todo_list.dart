@@ -20,6 +20,26 @@ class _TodoListState extends State<TodoList> {
             color: Colors.white,
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Set Task Date & Time',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                          color: Colors.black,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: Icon(Icons.close, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: 200,
                   child: CupertinoDatePicker(

@@ -10,6 +10,9 @@ class TodoList extends StatefulWidget {
 
 class _TodoListState extends State<TodoList> {
   DateTime dateTime = DateTime.now();
+  List<String> tasks = [];
+  final TextEditingController nameController = TextEditingController();
+  final key = GlobalKey<FormState>();
 
   void _showDatePicker(BuildContext context) {
     showCupertinoModalPopup(
@@ -100,7 +103,7 @@ class _TodoListState extends State<TodoList> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your first name';
                       }
-                      return null; 
+                      return null;
                     },
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(

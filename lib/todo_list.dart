@@ -66,7 +66,7 @@ class _TodoListState extends State<TodoList> {
                 IconButton(
                   color: Colors.blue,
                   icon: Icon(Icons.calendar_today),
-                  onPressed: () {},
+                  onPressed: () => _showDatePicker(context),
                 ),
               ],
             ),

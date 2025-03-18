@@ -90,6 +90,38 @@ class _TodoListState extends State<TodoList> {
                 ),
               ],
             ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your first name';
+                      }
+                      return null; 
+                    },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: InputDecoration(
+                      labelText: 'First Name',
+                      hintText: 'Enter your first name',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 62, 45, 92),
+                    padding: EdgeInsets.symmetric(horizontal: 27, vertical: 10),
+                  ),
+                  child: Text('Submit', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+
           ],
         ),
       ),

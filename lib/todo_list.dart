@@ -105,6 +105,7 @@ class _TodoListState extends State<TodoList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
+                  key: key,
                   child: TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -112,6 +113,7 @@ class _TodoListState extends State<TodoList> {
                       }
                       return null;
                     },
+                    controller: nameController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(
                       labelText: 'First Name',
@@ -144,7 +146,19 @@ class _TodoListState extends State<TodoList> {
               child: ListView.builder(
                 itemCount: tasks.length,
                 itemBuilder: (context, index) {
-                  return ListTile(title: Text(tasks[index]));
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [BoxShadow()],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text(tasks[index])],
+                    ),
+                  );
                 },
               ),
             ),

@@ -109,15 +109,15 @@ class _TodoListState extends State<TodoList> {
                   child: TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your first name';
+                        return 'Please enter your todo';
                       }
                       return null;
                     },
                     controller: nameController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(
-                      labelText: 'First Name',
-                      hintText: 'Enter your first name',
+                      labelText: 'Todo List',
+                      hintText: 'Enter your todo list',
                       border: OutlineInputBorder(),
                     ),
                   ),

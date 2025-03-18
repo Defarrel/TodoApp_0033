@@ -25,7 +25,10 @@ class _TodoListState extends State<TodoList> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Task Date:', style: TextStyle(fontSize: 16)),
-                    Text(''),
+                    Text(
+                      '${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ],
                 ),
                 IconButton(

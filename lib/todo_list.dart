@@ -14,6 +14,13 @@ class _TodoListState extends State<TodoList> {
   final TextEditingController nameController = TextEditingController();
   final key = GlobalKey<FormState>();
 
+  void addTask() {
+    setState(() {
+      tasks.add(nameController.text);
+      nameController.clear();
+    });
+  }
+
   void _showDatePicker(BuildContext context) {
     showCupertinoModalPopup(
       context: context,
@@ -115,7 +122,11 @@ class _TodoListState extends State<TodoList> {
                 ),
                 SizedBox(width: 16),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (key.currentState!.validate()) {
+                      addTask();
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 62, 45, 92),
                     padding: EdgeInsets.symmetric(horizontal: 27, vertical: 10),
@@ -128,6 +139,14 @@ class _TodoListState extends State<TodoList> {
             Text(
               'List Tasks',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: tasks.length,
+                itemBuilder: (context, index) {
+                  return ListTile(title: Text(tasks[index]));
+                },
+              ),
             ),
           ],
         ),

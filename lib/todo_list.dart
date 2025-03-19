@@ -26,6 +26,20 @@ class _TodoListState extends State<TodoList> {
       taskStatus.add(false);
       nameController.clear();
     });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Task added successfully',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color.fromARGB(255, 22, 122, 112), 
+        behavior: SnackBarBehavior.floating, 
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8), 
+        ),
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
 
   void _showDatePicker(BuildContext context) {
@@ -165,7 +179,7 @@ class _TodoListState extends State<TodoList> {
                     margin: EdgeInsets.symmetric(vertical: 8),
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 188, 188, 188),
+                      color: const Color.fromARGB(255, 227, 227, 227),
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [BoxShadow()],
                     ),

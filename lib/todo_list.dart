@@ -9,7 +9,7 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoListState extends State<TodoList> {
-  DateTime dateTime = DateTime.now();
+  DateTime? dateTime;
   List<String> tasks = [];
   List<String> dates = [];
   List<bool> taskStatus = [];
@@ -21,7 +21,7 @@ class _TodoListState extends State<TodoList> {
     setState(() {
       tasks.add(nameController.text);
       dates.add(
-        '${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}',
+        '${dateTime!.day}-${dateTime!.month}-${dateTime!.year} ${dateTime!.hour}:${dateTime!.minute}',
       );
       taskStatus.add(false);
       nameController.clear();
@@ -32,11 +32,9 @@ class _TodoListState extends State<TodoList> {
           'Task added successfully',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 22, 122, 112), 
-        behavior: SnackBarBehavior.floating, 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8), 
-        ),
+        backgroundColor: Color.fromARGB(255, 22, 122, 112),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         duration: Duration(seconds: 2),
       ),
     );
@@ -109,8 +107,12 @@ class _TodoListState extends State<TodoList> {
                   children: [
                     Text('Task Date:', style: TextStyle(fontSize: 16)),
                     Text(
-                      '${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}',
-                      style: TextStyle(fontSize: 16),
+                      dateTime != null
+                          ? '${dateTime!.day}-${dateTime!.month}-${dateTime!.year} ${dateTime!.hour}:${dateTime!.minute}'
+                          : 'Select a date',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),

@@ -101,42 +101,51 @@ class _TodoListState extends State<TodoList> {
               ],
             ),
             SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  key: key,
-                  child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your todo';
-                      }
-                      return null;
-                    },
-                    controller: nameController,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: InputDecoration(
-                      labelText: 'Todo List',
-                      hintText: 'Enter your todo list',
-                      border: OutlineInputBorder(),
+            Form(
+              key: key, 
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: nameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your todo';
+                        }
+                        return null; 
+                      },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        labelText: 'Todo List',
+                        hintText: 'Enter your todo list',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(width: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    if (key.currentState!.validate()) {
-                      addTask();
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 62, 45, 92),
-                    padding: EdgeInsets.symmetric(horizontal: 27, vertical: 10),
+                  SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (key.currentState != null &&
+                          key.currentState!.validate()) {
+                        addTask();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 62, 45, 92),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 27,
+                        vertical: 10,
+                      ),
+                    ),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                  child: Text('Submit', style: TextStyle(color: Colors.white)),
-                ),
-              ],
+                ],
+              ),
             ),
+
             SizedBox(height: 24),
             Text(
               'List Tasks',

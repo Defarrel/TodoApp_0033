@@ -12,7 +12,7 @@ class _TodoListState extends State<TodoList> {
   DateTime dateTime = DateTime.now();
   List<String> tasks = [];
   List<String> dates = [];
-  List<bool> taksStatus = [];
+  List<bool> taskStatus = [];
   final TextEditingController nameController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
   final key = GlobalKey<FormState>();
@@ -23,7 +23,7 @@ class _TodoListState extends State<TodoList> {
       dates.add(
         '${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}',
       );
-      taksStatus.add(false);
+      taskStatus.add(false);
       nameController.clear();
     });
   }
@@ -169,19 +169,45 @@ class _TodoListState extends State<TodoList> {
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [BoxShadow()],
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          tasks[index],
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                tasks[index],
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Deadline: ${dates[index]}',
+                                style: TextStyle(color: Colors.grey[700]),
+                              ),
+                              Text(
+                                taskStatus[index] ? 'Done' : 'Not Done',
+                                style: TextStyle(
+                                  color:
+                                      taskStatus[index]
+                                          ? Colors.green
+                                          : Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Text(
-                          'Deadline: ${(dates[index])}',
-                          style: TextStyle(color: Colors.grey[700]),
+                        Checkbox(
+                          value: taskStatus[index],
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              taskStatus[index] = newValue!;
+                            });
+                          },
+                          activeColor: Color.fromARGB(255, 62, 45, 92),
                         ),
                       ],
                     ),

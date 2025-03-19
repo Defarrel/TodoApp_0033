@@ -11,12 +11,17 @@ class TodoList extends StatefulWidget {
 class _TodoListState extends State<TodoList> {
   DateTime dateTime = DateTime.now();
   List<String> tasks = [];
+  List<String> dates = [];
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
   final key = GlobalKey<FormState>();
 
   void addTask() {
     setState(() {
       tasks.add(nameController.text);
+      dates.add(
+        '${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}',
+      );
       nameController.clear();
     });
   }
@@ -102,7 +107,7 @@ class _TodoListState extends State<TodoList> {
             ),
             SizedBox(height: 16),
             Form(
-              key: key, 
+              key: key,
               child: Row(
                 children: [
                   Expanded(
@@ -112,7 +117,7 @@ class _TodoListState extends State<TodoList> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your todo';
                         }
-                        return null; 
+                        return null;
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
@@ -145,7 +150,6 @@ class _TodoListState extends State<TodoList> {
                 ],
               ),
             ),
-
             SizedBox(height: 24),
             Text(
               'List Tasks',
@@ -159,13 +163,25 @@ class _TodoListState extends State<TodoList> {
                     margin: EdgeInsets.symmetric(vertical: 8),
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: const Color.fromARGB(255, 188, 188, 188),
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [BoxShadow()],
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text(tasks[index])],
+                      children: [
+                        Text(
+                          tasks[index],
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Deadline: ${(dates[index])}',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ],
                     ),
                   );
                 },

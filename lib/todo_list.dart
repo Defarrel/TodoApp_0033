@@ -110,10 +110,17 @@ class _TodoListState extends State<TodoList> {
                       dateTime != null
                           ? '${dateTime!.day}-${dateTime!.month}-${dateTime!.year} ${dateTime!.hour}:${dateTime!.minute}'
                           : 'Select a date',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(fontSize: 16),
                     ),
+                    if (dateTime ==
+                        null) 
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2.0),
+                        child: Text(
+                          'Please select a date!',
+                          style: TextStyle(color: Colors.red, fontSize: 14),
+                        ),
+                      ),
                   ],
                 ),
                 IconButton(

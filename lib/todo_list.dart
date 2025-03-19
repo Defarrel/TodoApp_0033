@@ -12,6 +12,7 @@ class _TodoListState extends State<TodoList> {
   DateTime dateTime = DateTime.now();
   List<String> tasks = [];
   List<String> dates = [];
+  List<bool> taksStatus = [];
   final TextEditingController nameController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
   final key = GlobalKey<FormState>();
@@ -22,6 +23,7 @@ class _TodoListState extends State<TodoList> {
       dates.add(
         '${dateTime.day}-${dateTime.month}-${dateTime.year} ${dateTime.hour}:${dateTime.minute}',
       );
+      taksStatus.add(false);
       nameController.clear();
     });
   }
